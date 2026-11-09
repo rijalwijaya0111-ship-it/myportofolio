@@ -44,7 +44,7 @@
             ><a class="btn btn-secondary" href="#about">Kenali Kami ↓</a>
           </div>
           <div class="micro-proof">
-            <div class="avatars"><span class="avatar">BC</span><span class="avatar">✦</span><span class="avatar">+</span></div>
+            <div class="avatars"><span class="avatar">RW</span><span class="avatar">✦</span><span class="avatar">+</span></div>
             <span>Strategi cerdas untuk langkah bisnis berikutnya.</span>
           </div>
         </div>
@@ -75,7 +75,7 @@
           <div class="section-head">
             <div class="kicker">Tentang</div>
             <h2>Kolaborasi yang mengubah <span class="gradient-text">potensi jadi progres.</span></h2>
-            <p>Business Class menggabungkan pola pikir strategis dan pendekatan kreatif untuk menciptakan solusi yang bukan hanya terlihat menarik, tetapi juga punya tujuan yang jelas.</p>
+            <p>Dengan menggabungkan pola pikir strategis dan pendekatan kreatif untuk menciptakan solusi yang bukan hanya terlihat menarik, tetapi juga punya tujuan yang jelas.</p>
           </div>
           <div class="stats">
             <div class="glass-card stat reveal"><strong>360°</strong><span>Pendekatan menyeluruh</span></div>
@@ -123,41 +123,55 @@
           <div class="section-head">
             <div class="kicker">My Portofolio</div>
             <h2>Ide yang dirancang untuk <span class="gradient-text">bergerak maju.</span></h2>
-            <p>Contoh konsep proyek yang menggambarkan pendekatan kami. Ganti dengan proyek, foto, dan hasil kerja asli milikmu.</p>
+            <p>Klik pada kartu proyek untuk melihat galeri dan rincian hasil karya.</p>
           </div>
+
           <div class="projects">
-            <article class="glass-card project reveal">
-              <div class="project-art art-three"><span class="project-tag">Web experience</span></div>
+            <!-- 1. Web Experience -->
+            <article class="glass-card project reveal project-card" data-project-id="web-experience">
+              <div class="project-art" style="background-image: url('asset/webxr.webp'); background-size: cover; background-position: center">
+                <span class="project-tag">Web experience</span>
+              </div>
               <div class="project-info">
                 <h3>Project Flow</h3>
                 <p>Eksplorasi tampilan digital yang fokus pada pengalaman pengguna dan kemudahan navigasi.</p>
-                <div class="project-meta"><span>UI/UX · Website</span><span>View concept ↗</span></div>
+                <div class="project-meta"><span>UI/UX · Website</span><span>Lihat Proyek ↗</span></div>
               </div>
             </article>
 
-            <article class="glass-card project reveal">
-              <div class="project-art art-one"><span class="project-tag">Brand identity</span></div>
-              <div class="project-info">
-                <h3>Project Aura</h3>
-                <p>Konsep identitas visual untuk brand lifestyle dengan karakter modern dan premium.</p>
-                <div class="project-meta"><span>Branding · Visual system</span><span>View concept ↗</span></div>
+            <!-- 2. Brand Identity / Content -->
+            <article class="glass-card project reveal project-card" data-project-id="brand-content">
+              <div class="project-art" style="background-image: url('asset/editing.webp'); background-size: cover; background-position: center">
+                <span class="project-tag">Brand identity</span>
               </div>
-            </article>
-            <article class="glass-card project reveal">
-              <div class="project-art art-two"><span class="project-tag">Digital campaign</span></div>
-              <div class="project-info">
-                <h3>Project Momentum</h3>
-                <p>Rancangan kampanye digital yang menghubungkan pesan brand dengan audiensnya.</p>
-                <div class="project-meta"><span>Campaign · Content</span><span>View concept ↗</span></div>
-              </div>
-            </article>
-
-            <article class="glass-card project reveal">
-              <div class="project-art art-four"><span class="project-tag">Social media</span></div>
               <div class="project-info">
                 <h3>Project Content</h3>
+                <p>Konsep identitas visual untuk brand lifestyle dengan karakter modern dan premium.</p>
+                <div class="project-meta"><span>Branding · Visual system</span><span>Lihat Proyek ↗</span></div>
+              </div>
+            </article>
+
+            <!-- 3. Digital Campaign / Marketing -->
+            <article class="glass-card project reveal project-card" data-project-id="digital-marketing">
+              <div class="project-art" style="background-image: url('asset/digmar.webp'); background-size: cover; background-position: center">
+                <span class="project-tag">Digital campaign</span>
+              </div>
+              <div class="project-info">
+                <h3>Digital Marketing</h3>
+                <p>Rancangan kampanye digital yang menghubungkan pesan brand dengan audiensnya.</p>
+                <div class="project-meta"><span>Campaign · Content</span><span>Lihat Proyek ↗</span></div>
+              </div>
+            </article>
+
+            <!-- 4. Social Media -->
+            <article class="glass-card project reveal project-card" data-project-id="social-media">
+              <div class="project-art" style="background-image: url('asset/sosmed.webp'); background-size: cover; background-position: center">
+                <span class="project-tag">Social media</span>
+              </div>
+              <div class="project-info">
+                <h3>Social Media Strategy</h3>
                 <p>Sistem konten sosial media untuk membangun karakter brand yang konsisten.</p>
-                <div class="project-meta"><span>Content · Community</span><span>View concept ↗</span></div>
+                <div class="project-meta"><span>Content · Community</span><span>Lihat Proyek ↗</span></div>
               </div>
             </article>
           </div>
@@ -378,6 +392,486 @@
             setTimeout(() => a.classList.remove('dock-bounce'), 700);
           }),
         );
+      })();
+    </script>
+    <script>
+      // Pengaman: jika halaman terlanjur bergeser ke samping, kembalikan ke posisi tengah
+      window.addEventListener(
+        'scroll',
+        function () {
+          if (window.scrollX !== 0) window.scrollTo(0, window.scrollY);
+        },
+        { passive: true },
+      );
+    </script>
+
+    <!-- MODAL DETAIL PORTOFOLIO / CAROUSEL DINAMIS -->
+    <div class="project-modal" id="projectModal" aria-hidden="true">
+      <div class="modal-overlay" id="modalOverlay"></div>
+      <div class="modal-content glass-card">
+        <button class="modal-close" id="modalClose" aria-label="Tutup modal">&times;</button>
+        <div class="modal-header">
+          <h3 id="modalTitle">Judul Proyek</h3>
+          <p id="modalDesc">Deskripsi proyek akan tampil di sini.</p>
+        </div>
+
+        <!-- CAROUSEL CONTAINER -->
+        <div class="carousel-container">
+          <button class="carousel-btn prev" id="prevBtn" aria-label="Sebelumnya">&#10094;</button>
+          <div class="carousel-track-wrapper">
+            <div class="carousel-track" id="carouselTrack">
+              <!-- Slide carousel akan digenerate otomatis oleh JavaScript -->
+            </div>
+          </div>
+          <button class="carousel-btn next" id="nextBtn" aria-label="Berikutnya">&#10095;</button>
+        </div>
+
+        <div class="carousel-dots" id="carouselDots">
+          <!-- Dot indikator akan digenerate otomatis oleh JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        // 1. DATA MASTER UNTUK SETIAP PROJECT
+        const projectsData = {
+          'web-experience': {
+            title: 'Project Flow — Web Experience',
+            description: 'Kumpulan proyek pengembangan website interaktif dan responsif.',
+            slides: [
+              {
+                title: '1. Website Portal Sekolah',
+                desc: 'Sistem informasi sekolah modern dengan integrasi pengumuman, galeri kegiatan, dan portal siswa.',
+                image: 'asset/foto1.webp',
+              },
+              {
+                title: '2. System Absensi Digital',
+                desc: 'Aplikasi web manajemen presensi berbasis QR code dan lokasi real-time untuk efisiensi instansi.',
+                image: 'asset/foto1.webp',
+              },
+              {
+                title: '3. Web E-Commerce Store',
+                desc: 'Toko online responsif dengan alur checkout yang optimal dan katalog produk interaktif.',
+                image: 'asset/foto1.webp',
+              },
+            ],
+          },
+          'brand-content': {
+            title: 'Project Content — Brand Identity',
+            description: 'Eksplorasi identitas visual dan panduan grafis brand.',
+            slides: [
+              {
+                title: '1. Visual Brand Guidelines',
+                desc: 'Perancangan logo, skema warna khas, dan tipografi untuk membangun konsistensi visual.',
+                image: 'asset/foto1.webp',
+              },
+              {
+                title: '2. Print & Packaging Design',
+                desc: 'Desain kemasan produk dan materi cetak berkualifikasi premium.',
+                image: 'asset/foto1.webp',
+              },
+            ],
+          },
+          'digital-marketing': {
+            title: 'Digital Marketing Campaigns',
+            description: 'Strategi pemasaran digital dan iklan berbasis performa.',
+            slides: [
+              {
+                title: '1. Facebook & Instagram Ads Strategy',
+                desc: 'Perancangan materi iklan visual berorientasi konversi tinggi.',
+                image: 'asset/foto1.webp',
+              },
+              {
+                title: '2. Analytics & Conversion Tracking',
+                desc: 'Analisis performa iklan dan optimasi landing page untuk menghemat biaya per akuisisi.',
+                image: 'asset/foto1.webp',
+              },
+            ],
+          },
+          'social-media': {
+            title: 'Social Media Management',
+            description: 'Perencanaan konten harian dan strategi keterikatan komunitas.',
+            slides: [
+              {
+                title: '1. Content Calendar & Copywriting',
+                desc: 'Penyusunan jadwal posting bulanan dan caption kreatif untuk meningkatkan engagement.',
+                image: 'asset/foto1.webp',
+              },
+              {
+                title: '2. Video Short & Reels Editing',
+                desc: 'Produksi video vertikal menarik untuk tren TikTok dan Instagram Reels.',
+                image: 'asset/foto1.webp',
+              },
+            ],
+          },
+        };
+
+        // 2. ELEMEN DOM & VARIABEL UTAMA
+        const modal = document.getElementById('projectModal');
+        const overlay = document.getElementById('modalOverlay');
+        const closeBtn = document.getElementById('modalClose');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDesc = document.getElementById('modalDesc');
+        const track = document.getElementById('carouselTrack');
+        const dotsContainer = document.getElementById('carouselDots');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        let currentIndex = 0;
+        let currentSlidesCount = 0;
+
+        // 3. FUNGSI UPDATE TAMPILAN CAROUSEL
+        function updateCarousel() {
+          track.style.transform = `translateX(-${currentIndex * 100}%)`;
+          const dots = dotsContainer.querySelectorAll('.dot-item');
+          dots.forEach((dot, idx) => {
+            dot.classList.toggle('active', idx === currentIndex);
+          });
+        }
+
+        // 4. MENGISI ISI MODAL SESUAI PROYEK YANG DIKLIK
+        function loadProjectData(projectId) {
+          const data = projectsData[projectId];
+          if (!data) return;
+
+          modalTitle.textContent = data.title;
+          modalDesc.textContent = data.description;
+          currentSlidesCount = data.slides.length;
+          currentIndex = 0;
+
+          // Render Slide
+          track.innerHTML = data.slides
+            .map(
+              (slide) => `
+        <div class="carousel-slide">
+          <div class="slide-art">
+            <img src="${slide.image}" alt="${slide.title}" />
+          </div>
+          <div class="slide-caption">
+            <h4>${slide.title}</h4>
+            <p>${slide.desc}</p>
+          </div>
+        </div>
+      `,
+            )
+            .join('');
+
+          // Render Dots
+          dotsContainer.innerHTML = data.slides
+            .map(
+              (_, idx) => `
+        <span class="dot-item ${idx === 0 ? 'active' : ''}" data-index="${idx}"></span>
+      `,
+            )
+            .join('');
+
+          // Event listener untuk dot indikator
+          dotsContainer.querySelectorAll('.dot-item').forEach((dot) => {
+            dot.addEventListener('click', (e) => {
+              currentIndex = parseInt(e.target.dataset.index);
+              updateCarousel();
+            });
+          });
+
+          updateCarousel();
+        }
+
+        // 5. EVENT BUKA & TUTUP MODAL
+        document.querySelectorAll('.project-card').forEach((card) => {
+          card.addEventListener('click', () => {
+            const projectId = card.getAttribute('data-project-id');
+            loadProjectData(projectId);
+            modal.classList.add('is-open');
+            modal.setAttribute('aria-hidden', 'false');
+          });
+        });
+
+        function closeModal() {
+          modal.classList.remove('is-open');
+          modal.setAttribute('aria-hidden', 'true');
+        }
+
+        overlay.addEventListener('click', closeModal);
+        closeBtn.addEventListener('click', closeModal);
+
+        // Navigasi Tombol Panah
+        prevBtn.addEventListener('click', () => {
+          if (currentSlidesCount === 0) return;
+          currentIndex = (currentIndex - 1 + currentSlidesCount) % currentSlidesCount;
+          updateCarousel();
+        });
+
+        nextBtn.addEventListener('click', () => {
+          if (currentSlidesCount === 0) return;
+          currentIndex = (currentIndex + 1) % currentSlidesCount;
+          updateCarousel();
+        });
+      })();
+    </script>
+
+    <!-- 1. MODAL PORTOFOLIO / CAROUSEL UTAMA -->
+    <div class="project-modal" id="projectModal" aria-hidden="true">
+      <div class="modal-overlay" id="modalOverlay"></div>
+      <div class="modal-content glass-card">
+        <button class="modal-close" id="modalClose" aria-label="Tutup modal">&times;</button>
+        <div class="modal-header">
+          <h3 id="modalTitle">Judul Proyek</h3>
+          <p id="modalDesc">Deskripsi proyek akan tampil di sini.</p>
+        </div>
+
+        <div class="carousel-container">
+          <button class="carousel-btn prev" id="prevBtn" aria-label="Sebelumnya">&#10094;</button>
+          <div class="carousel-track-wrapper">
+            <div class="carousel-track" id="carouselTrack">
+              <!-- Slide carousel digenerate oleh JS -->
+            </div>
+          </div>
+          <button class="carousel-btn next" id="nextBtn" aria-label="Berikutnya">&#10095;</button>
+        </div>
+
+        <div class="carousel-dots" id="carouselDots"></div>
+      </div>
+    </div>
+
+    <!-- 2. MODAL SUB-DETAIL (Tampil ketika salah satu slide carousel diklik) -->
+    <div class="subdetail-modal" id="subDetailModal" aria-hidden="true">
+      <div class="modal-overlay" id="subDetailOverlay"></div>
+      <div class="modal-content glass-card subdetail-content">
+        <button class="modal-close" id="subDetailClose" aria-label="Tutup modal">&times;</button>
+        <div class="subdetail-body">
+          <div class="subdetail-img-wrap">
+            <img id="subDetailImg" src="" alt="Detail Proyek" />
+          </div>
+          <div class="subdetail-info">
+            <span class="project-tag" id="subDetailTag">Detail Proyek</span>
+            <h2 id="subDetailTitle">Judul Sub-Proyek</h2>
+            <p id="subDetailDesc">Deskripsi lengkap dari sub-proyek ini.</p>
+            <div class="subdetail-features" id="subDetailFeatures"></div>
+            <a id="subDetailLink" href="#" target="_blank" class="btn btn-primary" style="margin-top: 20px; display: inline-flex"> Buka Live Demo / Website ↗ </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        // 1. DATA PROJECT BESERTA SUB-DETAIL SETIAP SLIDE
+        const projectsData = {
+          'web-experience': {
+            title: 'Project Flow — Web Experience',
+            description: 'Kumpulan proyek pengembangan website interaktif dan responsif.',
+            slides: [
+              {
+                title: '1. Website Portal Sekolah',
+                desc: 'Sistem informasi sekolah modern dengan integrasi pengumuman, galeri kegiatan, dan portal siswa.',
+                image: 'asset/foto1.webp',
+                tag: 'Web Sekolah',
+                fullDesc: 'Website portal sekolah ini dilengkapi fitur manajemen data siswa, jadwal pelajaran, pengumuman otomatis, dan galeri event interaktif.',
+                features: ['Responsive UI', 'CMS Admin', 'Portal Siswa', 'Fast Loading'],
+                link: 'https://example.com/sekolah',
+              },
+              {
+                title: '2. System Absensi Digital',
+                desc: 'Aplikasi web manajemen presensi berbasis QR code dan lokasi real-time untuk efisiensi instansi.',
+                image: 'asset/foto1.webp',
+                tag: 'Web System',
+                fullDesc: 'Sistem absensi berbasis web yang terhubung dengan GPS dan pemindai QR Code untuk mempermudah pencatatan kehadiran karyawan/siswa secara akurat.',
+                features: ['QR Scanner', 'Geolocation Tracking', 'Export PDF/Excel', 'Real-time Stats'],
+                link: 'https://example.com/absensi',
+              },
+              {
+                title: '3. Web E-Commerce Store',
+                desc: 'Toko online responsif dengan alur checkout yang optimal dan katalog produk interaktif.',
+                image: 'asset/foto1.webp',
+                tag: 'E-Commerce',
+                fullDesc: 'Platform toko online modern yang mendukung integrasi gateway pembayaran, manajemen stok barang, dan filter produk instan.',
+                features: ['Payment Gateway', 'Cart System', 'Filter Produk', 'SEO Friendly'],
+                link: 'https://example.com/store',
+              },
+            ],
+          },
+          'brand-content': {
+            title: 'Project Content — Brand Identity',
+            description: 'Eksplorasi identitas visual dan panduan grafis brand.',
+            slides: [
+              {
+                title: '1. Visual Brand Guidelines',
+                desc: 'Perancangan logo, skema warna khas, dan tipografi untuk membangun konsistensi visual.',
+                image: 'asset/foto1.webp',
+                tag: 'Branding',
+                fullDesc: 'Panduan lengkap penggunaan logo, palet warna, tipe huruf, dan aturan tata letak visual brand di media cetak maupun digital.',
+                features: ['Logo Design', 'Color Palette', 'Typography', 'Brand Assets'],
+                link: 'https://example.com/branding',
+              },
+            ],
+          },
+          'digital-marketing': {
+            title: 'Digital Marketing Campaigns',
+            description: 'Strategi pemasaran digital dan iklan berbasis performa.',
+            slides: [
+              {
+                title: '1. Facebook & Instagram Ads Strategy',
+                desc: 'Perancangan materi iklan visual berorientasi konversi tinggi.',
+                image: 'asset/foto1.webp',
+                tag: 'Ads Campaign',
+                fullDesc: 'Kampanye iklan media sosial yang dirancang khusus untuk meningkatkan ROI dan menjangkau target audiens potensial.',
+                features: ['A/B Testing', 'Copywriting', 'Creative Copy', 'Targeting'],
+                link: 'https://example.com/ads',
+              },
+            ],
+          },
+          'social-media': {
+            title: 'Social Media Management',
+            description: 'Perencanaan konten harian dan strategi keterikatan komunitas.',
+            slides: [
+              {
+                title: '1. Content Calendar & Copywriting',
+                desc: 'Penyusunan jadwal posting bulanan dan caption kreatif untuk meningkatkan engagement.',
+                image: 'asset/foto1.webp',
+                tag: 'Social Media',
+                fullDesc: 'Strategi pengelolaan feed dan story media sosial secara konsisten untuk memperkuat branding bisnis.',
+                features: ['Content Plan', 'Copywriting', 'Design Feed', 'Analytics'],
+                link: 'https://example.com/sosmed',
+              },
+            ],
+          },
+        };
+
+        // DOM CAROUSEL UTAMA
+        const modal = document.getElementById('projectModal');
+        const overlay = document.getElementById('modalOverlay');
+        const closeBtn = document.getElementById('modalClose');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDesc = document.getElementById('modalDesc');
+        const track = document.getElementById('carouselTrack');
+        const dotsContainer = document.getElementById('carouselDots');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        // DOM MODAL SUB-DETAIL
+        const subModal = document.getElementById('subDetailModal');
+        const subOverlay = document.getElementById('subDetailOverlay');
+        const subCloseBtn = document.getElementById('subDetailClose');
+        const subImg = document.getElementById('subDetailImg');
+        const subTag = document.getElementById('subDetailTag');
+        const subTitle = document.getElementById('subDetailTitle');
+        const subDesc = document.getElementById('subDetailDesc');
+        const subFeatures = document.getElementById('subDetailFeatures');
+        const subLink = document.getElementById('subDetailLink');
+
+        let currentIndex = 0;
+        let currentSlidesCount = 0;
+        let currentProjectData = null;
+
+        function updateCarousel() {
+          track.style.transform = `translateX(-${currentIndex * 100}%)`;
+          const dots = dotsContainer.querySelectorAll('.dot-item');
+          dots.forEach((dot, idx) => {
+            dot.classList.toggle('active', idx === currentIndex);
+          });
+        }
+
+        // FUNGSI MEMBUKA DETAIL SUB-PROYEK
+        function openSubDetail(slideData) {
+          subImg.src = slideData.image;
+          subTag.textContent = slideData.tag || 'Detail Proyek';
+          subTitle.textContent = slideData.title;
+          subDesc.textContent = slideData.fullDesc || slideData.desc;
+          subLink.href = slideData.link || '#';
+
+          subFeatures.innerHTML = (slideData.features || []).map((f) => `<span>${f}</span>`).join('');
+
+          subModal.classList.add('is-open');
+          subModal.setAttribute('aria-hidden', 'false');
+        }
+
+        // MEMUAT ISI CAROUSEL
+        function loadProjectData(projectId) {
+          const data = projectsData[projectId];
+          if (!data) return;
+
+          currentProjectData = data;
+          modalTitle.textContent = data.title;
+          modalDesc.textContent = data.description;
+          currentSlidesCount = data.slides.length;
+          currentIndex = 0;
+
+          // Render Slide
+          track.innerHTML = data.slides
+            .map(
+              (slide, index) => `
+        <div class="carousel-slide" data-slide-index="${index}">
+          <div class="slide-art">
+            <img src="${slide.image}" alt="${slide.title}" />
+          </div>
+          <div class="slide-caption">
+            <h4>${slide.title}</h4>
+            <p>${slide.desc}</p>
+          </div>
+        </div>
+      `,
+            )
+            .join('');
+
+          // Event Klik Slide untuk Buka Sub-Detail
+          track.querySelectorAll('.carousel-slide').forEach((slideEl) => {
+            slideEl.addEventListener('click', () => {
+              const idx = parseInt(slideEl.getAttribute('data-slide-index'));
+              openSubDetail(currentProjectData.slides[idx]);
+            });
+          });
+
+          // Render Dots
+          dotsContainer.innerHTML = data.slides.map((_, idx) => `<span class="dot-item ${idx === 0 ? 'active' : ''}" data-index="${idx}"></span>`).join('');
+
+          dotsContainer.querySelectorAll('.dot-item').forEach((dot) => {
+            dot.addEventListener('click', (e) => {
+              currentIndex = parseInt(e.target.dataset.index);
+              updateCarousel();
+            });
+          });
+
+          updateCarousel();
+        }
+
+        // EVENT LISTENER CAROUSEL
+        document.querySelectorAll('.project-card').forEach((card) => {
+          card.addEventListener('click', () => {
+            const projectId = card.getAttribute('data-project-id');
+            loadProjectData(projectId);
+            modal.classList.add('is-open');
+            modal.setAttribute('aria-hidden', 'false');
+          });
+        });
+
+        function closeModal() {
+          modal.classList.remove('is-open');
+          modal.setAttribute('aria-hidden', 'true');
+        }
+        overlay.addEventListener('click', closeModal);
+        closeBtn.addEventListener('click', closeModal);
+
+        // EVENT LISTENER TUTUP SUB-DETAIL
+        function closeSubModal() {
+          subModal.classList.remove('is-open');
+          subModal.setAttribute('aria-hidden', 'true');
+        }
+        subOverlay.addEventListener('click', closeSubModal);
+        subCloseBtn.addEventListener('click', closeSubModal);
+
+        // NAVIGASI PANAH
+        prevBtn.addEventListener('click', () => {
+          if (currentSlidesCount === 0) return;
+          currentIndex = (currentIndex - 1 + currentSlidesCount) % currentSlidesCount;
+          updateCarousel();
+        });
+
+        nextBtn.addEventListener('click', () => {
+          if (currentSlidesCount === 0) return;
+          currentIndex = (currentIndex + 1) % currentSlidesCount;
+          updateCarousel();
+        });
       })();
     </script>
   </body>
